@@ -152,6 +152,7 @@ func main() {
 			]
 		`
 		os.WriteFile(configPath, []byte(content), 0644)
+		fmt.Println("config file generated in " + configPath)
 	}
 
 	content, err := os.ReadFile(configPath)
