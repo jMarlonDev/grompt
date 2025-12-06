@@ -29,8 +29,14 @@ func GitStatus_NoClean(data []any) string {
 }
 
 func GitStatus_Clean(data []any) string {
+	cmd := exec.Command("git", "rev-parse", "--is-inside-work-tree")
+	err := cmd.Run()
 
-	cmd := exec.Command("git", "status", "--porcelain")
+	if err == nil {
+		return ""
+	}
+
+	cmd = exec.Command("git", "status", "--porcelain")
 
 	content, _ := cmd.Output()
 

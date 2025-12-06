@@ -8,6 +8,10 @@ BUILD_DIR := bin
 run:
 	$(SILENT) run .
 
+
+dev:
+	env CONFIG_PATH=./config.json $(SILENT) run .
+
 build:
 	$(SILENT) build -ldflags "-s -w" -o $(BUILD_DIR)/$(PROGRAM)_light .
 
