@@ -32,7 +32,7 @@ func GitStatus_Clean(data []any) string {
 	cmd := exec.Command("git", "rev-parse", "--is-inside-work-tree")
 	err := cmd.Run()
 
-	if err == nil {
+	if err != nil {
 		return ""
 	}
 
