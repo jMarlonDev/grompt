@@ -66,17 +66,9 @@ The default config file is generated on `$HOME/.config/grompt.json`
 
 - **bash**:
 
-Run this
-```bash
-echo 'export PS1="$(grompt | perl -pe '\''s/\x1b\[([0-9;]*m)/\\[\\e\[$1\\]/g'\'")"' >> ~/.bashrc 
-source ~/.bashrc
-```
-
-Or put this on .bashrc
-
+Put this on .bashrc
 ```bash 
-prompt=$(grompt | sed -E $'s/\x1b\\[([0-9;]*m)/\\\\[\\\\e[\\1\\\\]/g')
-export PS1="$prompt"
+PROMPT_COMMAND='PS1="$(grompt | perl -pe 's/\x1b\[([0-9;]*m)/\\[\\e[$1\\]/g')"' 
 ```
 
 - **zsh**:
@@ -96,3 +88,4 @@ fish -c "source ~/.config/fish/functions/fish_prompt.fish"
 ```bash
 grep -qxF "PS1='$(grompt)'" ~/.profile 2>/dev/null || echo "PS1='\$(grompt)'" >> ~/.profile && . ~/.profile
 ```
+
